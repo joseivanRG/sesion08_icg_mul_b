@@ -1,0 +1,56 @@
+<canvas id='tablero' width=5000 height=4500></canvas>
+<script>
+    function recorte(arr){
+     ctx.beginPath();
+     ctx.moveTo(arr[0],arr[1]);
+     for(var i = 2; i< arr.length; i+=2)
+	ctx.lineTo(arr[i], arr[i+1]);
+     ctx.clip();
+    }
+    function triangulo(cd,colorBorde,colorRelleno,grosor){
+     ctx.beginPath();
+     ctx.strokeStyle = colorBorde;
+     ctx.fillStyle = colorRelleno;
+     ctx.lineWidth = grosor;
+     ctx.moveTo(cd[0],cd[1]);
+     ctx.lineTo(cd[2],cd[3]);
+     ctx.lineTo(cd[4],cd[5]);
+     ctx.closePath();
+     ctx.stroke();
+     ctx.fill();
+    }
+    function polygon(cd,colorBorde,colorRelleno,grosor){
+     ctx.beginPath();
+     ctx.strokeStyle = colorBorde;
+     ctx.fillStyle = colorRelleno;
+     ctx.lineWidth = grosor;
+     ctx.moveTo(cd[0],cd[1]);
+     ctx.lineTo(cd[2],cd[3]);
+     ctx.lineTo(cd[4],cd[5]);
+     ctx.lineTo(cd[6],cd[7]);
+     ctx.lineTo(cd[8],cd[9]);
+     ctx.closePath();
+     ctx.stroke();
+     ctx.fill();
+    }
+   
+    var c = document.getElementById('tablero')
+    var ctx =c.getContext('2d');
+    
+    var arr1 = [116, 15, 392, 165, 131, 299]; //triangulo
+    var arr2 = [44, 16, 84, 14, 84, 305, 44,305]; //rectangulo amarillo
+    var arr3 = [16, 29, 370, 29, 371, 75, 16, 75]; //rectangulo naranja 
+    var arr4 = [316, 12, 355, 12, 356, 309, 315, 309]; //rectangulo verde 
+    var arr5 = [363, 234, 363, 276, 17, 276, 17, 234]; //rectangulo azul
+    
+    polygon(arr2, 'yellow', 'rgba(254, 242, 0)');
+    polygon(arr3, 'orange', 'rgba(255, 127, 38)');
+    polygon(arr4, 'green', 'rgba(35, 177, 77)') ;
+    polygon(arr5, 'yellow', 'rgba(0, 163, 232)');
+    triangulo(arr1, 'orange', 'rgba(195,195,195)');
+    recorte([116, 15, 392, 165, 131, 299]);
+    polygon(arr3, 'orange', 'rgba(255, 127, 38)');
+    recorte([316, 12, 355, 12, 356, 309, 315, 309]);
+    polygon(arr5, 'yellow', 'rgba(0, 163, 232)');
+
+</script>
